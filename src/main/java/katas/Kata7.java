@@ -28,7 +28,6 @@ public class Kata7 {
                                 .reduce((boxArt, boxArt2) -> boxArt.getWidth() < boxArt2.getWidth() ? boxArt : boxArt2 )
                                 .map(BoxArt::getUrl))).collect(Collectors.toList());
 
-        System.out.println("Resultado "+moviesResult);
         return moviesResult;
     }
 }
