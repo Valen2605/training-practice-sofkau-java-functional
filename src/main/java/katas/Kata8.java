@@ -30,7 +30,6 @@ public class Kata8 {
                 .zip(movieStream, bookMarksStream,
                         (movie, bookMark) -> ImmutableMap.of("videoId", movie.getId(),"bookmarkId", bookMark.getId()))
                 .collect(Collectors.toList());
-        System.out.print("Result "+ moviesResult);
 
         return moviesResult;
 
