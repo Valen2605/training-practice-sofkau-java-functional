@@ -6,6 +6,7 @@ import model.MovieList;
 import util.DataUtil;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /*
@@ -26,9 +27,10 @@ public class Kata3 {
     public static List<Integer> execute() {
         List<MovieList> movieLists = DataUtil.getMovieLists();
 
-        return movieLists.stream()
+        List<Integer> moviesResult = movieLists.stream()
                 .flatMap(movieList -> movieList.getVideos().stream())
                 .map(Movie::getId)
                 .collect(Collectors.toList());
+        return moviesResult;
     }
 }
