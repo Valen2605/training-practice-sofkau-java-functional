@@ -31,6 +31,7 @@ public class Kata3 {
                 .flatMap(movieList -> movieList.getVideos().stream())
                 .map(Movie::getId)
                 .collect(Collectors.toList());
+
         return moviesResult;
     }
 }

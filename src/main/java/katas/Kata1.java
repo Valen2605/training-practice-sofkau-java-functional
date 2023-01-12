@@ -23,6 +23,7 @@ public class Kata1 {
                         "id", movie.getId(),
                         "title", movie.getTitle()))
                 .collect(Collectors.toList());
+
         return moviesResult;
     }
 }

@@ -23,6 +23,7 @@ public class Kata5 {
         Double moviesResult = movies.stream()
                 .mapToDouble(movie -> movie.getRating())
                 .reduce(Double::max).getAsDouble();
+
         return moviesResult;
     }
 }

@@ -21,6 +21,7 @@ public class Kata6 {
                 .flatMap(boxart -> boxart.getBoxarts().stream())
                 .reduce((boxArt1, boxArt2) -> boxArt1.getWidth() > boxArt2.getWidth() ? boxArt1 : boxArt2 )
                 .map(BoxArt::getUrl));
+        System.out.println(moviesResult);
 
         return moviesResult;
     }

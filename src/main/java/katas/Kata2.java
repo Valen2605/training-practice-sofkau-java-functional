@@ -23,6 +23,7 @@ public class Kata2 {
                         movie.getRating().equals(5.0))
                 .map(Movie::getId)
                 .collect(Collectors.toList());
+
         return moviesResult;
     }
 }

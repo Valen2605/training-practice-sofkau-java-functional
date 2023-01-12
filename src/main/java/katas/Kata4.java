@@ -25,6 +25,8 @@ public class Kata4 {
                         ImmutableMap.of("id", video.getId(),"title", video.getTitle(), "boxart", video.getBoxarts().stream()
                                 .filter(boxArt -> boxArt.getHeight().equals(200) && boxArt.getWidth().equals(150))
                                 .map(BoxArt::getUrl).findAny())).collect(Collectors.toList());
+        System.out.println(moviesResult);
+
         return moviesResult;
 
 
