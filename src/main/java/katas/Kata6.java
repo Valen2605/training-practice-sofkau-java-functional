@@ -15,7 +15,7 @@ import java.util.List;
 public class Kata6 {
     public static String execute() {
         List<MovieList> movies = DataUtil.getMovieLists();
-        
+
         String moviesResult = String.valueOf(movies.stream()
                 .flatMap(video -> video.getVideos().stream())
                 .flatMap(boxart -> boxart.getBoxarts().stream())
