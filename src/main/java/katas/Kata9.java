@@ -27,13 +27,6 @@ public class Kata9 {
         List<InterestingMoment> interestingMomentsList = DataUtil.getMovies().stream()
                 .flatMap(movie -> movie.getInterestingMoments().stream()).collect(Collectors.toList());
 
-//        Stream<Movie> moviesStream = movieLists.stream()
-//                .reduce(video -> video.getVideos().stream());
-//
-//        List<InterestingMoment> interestingMoments = interestingMomentsList.stream().collect(Collectors.toList());
-
-
-
        List<Map> moviesResult =  movieLists.stream()
                .flatMap(item -> item.getVideos().stream())
                .map( movie -> ImmutableMap.of(

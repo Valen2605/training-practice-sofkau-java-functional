@@ -6,6 +6,8 @@ import util.DataUtil;
 
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /*
     Goal: Create a datastructure from the given data:
@@ -60,11 +62,33 @@ public class Kata11 {
     public static List<Map> execute() {
         List<Map> lists = DataUtil.getLists();
         List<Map> videos = DataUtil.getVideos();
+
+        List<Map> moviesResult = lists
+                .stream().map(
+                        list -> ImmutableMap.of(
+                                "name", list.get("name"),
+                                "videos", videos.stream()
+                                        .filter(video -> video.get("listId").equals(list.get("id")))
+                                        .map(functionMovieToMap())
+                                        .collect(Collectors.toList())))
+                .collect(Collectors.toList());
+        System.out.print(moviesResult);
+        return moviesResult;
+    }
+
+    public static Function<Map, ImmutableMap<String,Object>> functionMovieToMap(){
         List<Map> boxArts = DataUtil.getBoxArts();
         List<Map> bookmarkList = DataUtil.getBookmarkList();
-
-        return ImmutableList.of(ImmutableMap.of("name", "someName", "videos", ImmutableList.of(
-                ImmutableMap.of("id", 5, "title", "The Chamber", "time", 123, "boxart", "someUrl")
-        )));
+        return movie -> ImmutableMap.of(
+                "id", movie.get("id"),
+                "title", movie.get("title"),
+                "time", bookmarkList.stream()
+                        .filter(bookmark -> bookmark.get("videoId").equals(movie.get("id")))
+                        .findFirst()
+                        .map(bookmark -> bookmark.get("time")),
+                "boxart", boxArts.stream()
+                        .filter(boxArt -> boxArt.get("videoId").equals(movie.get("id")))
+                        .reduce((box1, box2) -> (Integer) box1.get("width") < (Integer) box2.get("width") ? box1 : box2)
+                        .map(boxArt -> boxArt.get("url")));
     }
 }
